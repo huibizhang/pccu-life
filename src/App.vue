@@ -12,9 +12,9 @@
         :key="w.Location"
         v-bind="w"
       />
-      <img
+      <iframe
         src="http://140.137.99.95:8008"
-        class="aspect-video object-cover"
+        class="aspect-video"
       />
     </div>
   </div>
