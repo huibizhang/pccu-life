@@ -4,9 +4,13 @@
       <div class="w-full flex justify-evenly items-center p-4 gap-8">
         <div class="w-20 h-20 text-white flex-none flex justify-center items-center">
           <!-- 雲朵 -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-          </svg>
+          </svg> -->
+          <img
+            :src="`weather_icons/${getWetherIcon(WeatherDesciption)}.png`"
+            class="w-full h-full object-fit"
+          />
         </div>
         <div class="flex justify-center items-center">
           <div class="flex flex-col gap-1">
@@ -110,6 +114,49 @@ export default {
           result = Nyear + "-" + Nmonth + "-" + Ndate
       }
       return result;
+    },
+    getWetherIcon (weatherDescription) {
+      if (weatherDescription.indexOf('雨') != -1) {
+          if (weatherDescription.indexOf('雷') != -1 && weatherDescription.indexOf('霧') != -1) {
+              return "fog_thunder";
+          }
+          if (weatherDescription.indexOf('雷') != -1) {
+              return "cloudy_rain_thunder";
+          }
+          if (weatherDescription.indexOf('霧') != -1) {
+              return "fog_rain";
+          }
+
+          if (weatherDescription.indexOf('晴') != -1) {
+              return "sunny_cloudy_rain";
+          }
+
+          return "cloudy_rain";
+      }
+
+      if (weatherDescription.indexOf('霧') != -1) {
+          if (weatherDescription.indexOf('晴') != -1) {
+              return "sunny_fog";
+          }
+          return "cloudy_fog";
+      }
+
+      if (weatherDescription.indexOf('晴') != -1) {
+          if (weatherDescription.indexOf('雲') != -1) {
+              return "sunny_cloudy";
+          }
+          return "sunny";
+      }
+
+      if (weatherDescription.indexOf('多雲') != -1) {
+          return "muti_cloudy";
+      }
+
+      if (weatherDescription.indexOf('雪') != -1) {
+          return "cloudy_snow";
+      }
+
+      return "cloudy";
     }
   }
 }
