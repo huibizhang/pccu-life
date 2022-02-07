@@ -12,10 +12,10 @@
         :key="w.Location"
         v-bind="w"
       />
-      <img
+      <!-- <img
         src="http://140.137.99.95:8008"
         class="aspect-video"
-      />
+      /> -->
     </div>
   </div>
 </template>
